@@ -11,22 +11,19 @@ export default function PropertyPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(`${import.meta.env.BASE_URL}properties.json`);
-        const data = await res.json();
-        setAllProperties(data.properties || []);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+    (async () => {
+      const res = await fetch(`${import.meta.env.BASE_URL}properties.json`);
+      const data = await res.json();
+      setProperties(Array.isArray(data?.properties) ? data.properties : []);
+      setLoading(false);
+    })();
   }, []);
 
-  const property = useMemo(
-    () => allProperties.find((p) => p.id === id),
-    [allProperties, id]
-  );
+  if (loading) return <p>Loading…</p>;
+
+  const property = properties.find((p) => p.id === id);   // ✅ correct match
+
+  if (!property) return <p>The property ID in the URL didn’t match any listing.</p>;
 
   const { addFavourite } = useFavourites();
 
