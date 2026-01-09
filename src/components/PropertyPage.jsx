@@ -13,7 +13,7 @@ export default function PropertyPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/properties.json");
+        const res = await fetch(`${import.meta.env.BASE_URL}properties.json`);
         const data = await res.json();
         setAllProperties(data.properties || []);
       } finally {
