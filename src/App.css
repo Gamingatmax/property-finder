@@ -8,7 +8,10 @@
   --radius: 14px;
 }
 
-
+.link {
+  white-space: nowrap;
+  display: inline-block;
+}
 
 * { box-sizing: border-box; }
 

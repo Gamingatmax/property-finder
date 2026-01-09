@@ -11,7 +11,7 @@ export default function FavouritesPanel() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("properties.json");
+      const res = await fetch(`${import.meta.env.BASE_URL}properties.json`);
       const data = await res.json();
       setAllProperties(data.properties || []);
     };

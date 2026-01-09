@@ -18,7 +18,7 @@ export default function SearchPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("properties.json");
+      const response = await fetch(`${import.meta.env.BASE_URL}properties.json`);
       const data = await response.json();
       setAllProperties(data.properties || []);
     };
